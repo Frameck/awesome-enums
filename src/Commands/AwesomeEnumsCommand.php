@@ -13,7 +13,7 @@ class AwesomeEnumsCommand extends GeneratorCommand
 
     protected function getStub(): string
     {
-        return base_path('stubs/enum.stub');
+        return base_path('vendor/frameck/awesome-enums/stubs/enum.stub');
     }
 
     protected function getDefaultNamespace($rootNamespace): string
