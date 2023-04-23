@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Frameck\AwesomeEnums\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class AwesomeEnumsCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'awesome-enums';
 
     public $description = 'My command';
 
