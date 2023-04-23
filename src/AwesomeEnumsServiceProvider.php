@@ -17,9 +17,6 @@ class AwesomeEnumsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('awesome-enums')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_awesome-enums_table')
             ->hasCommand(AwesomeEnumsCommand::class);
     }
 }

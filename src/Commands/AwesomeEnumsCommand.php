@@ -2,18 +2,29 @@
 
 namespace Frameck\AwesomeEnums\Commands;
 
-use Illuminate\Console\Command;
+use Illuminate\Console\GeneratorCommand;
+use Symfony\Component\Console\Input\InputOption;
 
-class AwesomeEnumsCommand extends Command
+class AwesomeEnumsCommand extends GeneratorCommand
 {
-    public $signature = 'awesome-enums';
+    public $signature = 'make:enum {name}';
 
-    public $description = 'My command';
+    public $description = 'Make an enum class';
 
-    public function handle(): int
+    protected function getStub(): string
     {
-        $this->comment('All done');
+        return base_path('stubs/enum.stub');
+    }
 
-        return self::SUCCESS;
+    protected function getDefaultNamespace($rootNamespace): string
+    {
+        return $rootNamespace . '\Enums';
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            ['force', null, InputOption::VALUE_NONE, 'Create the class even if it already exists'],
+        ];
     }
 }
