@@ -18,7 +18,7 @@ composer require frameck/awesome-enums
 ## Usage
 
 ```bash
-php artisan make:enum DeclineCodes
+php artisan make:enum DeclineCode
 ```
 
 This command generates the following code:
@@ -29,7 +29,7 @@ use Frameck\AwesomeEnums\Traits\FromString;
 use Frameck\AwesomeEnums\Traits\HasDetails;
 use Frameck\AwesomeEnums\Traits\ToSelect;
 
-enum DeclineCodes
+enum DeclineCode
 {
     use FromString;
     use HasDetails;
@@ -39,7 +39,7 @@ enum DeclineCodes
 
 Then we specify that it's a backed enum of type string add the cases
 ```php
-enum DeclineCodes: string
+enum DeclineCode: string
 {
     use FromString;
     use HasDetails;
@@ -54,7 +54,7 @@ enum DeclineCodes: string
 
 This is already enough to use this package:
 ```php
-DeclineCodes::all(); // gives you a collection of all cases with their details
+DeclineCode::all(); // gives you a collection of all cases with their details
 
 Illuminate\Support\Collection {
     all: [
@@ -82,19 +82,19 @@ Illuminate\Support\Collection {
 }
 ```
 ```php
-DeclineCodes::EXPIRED_CARD; // gives you the the enum object for that specific case
+DeclineCode::EXPIRED_CARD; // gives you the the enum object for that specific case
 
-App\Enums\DeclineCodes {
+App\Enums\DeclineCode {
     name: "EXPIRED_CARD",
     value: "expired_card",
 }
 ```
 ```php
-DeclineCodes::EXPIRED_CARD->name; // gives you the the name for that specific case
-DeclineCodes::EXPIRED_CARD->value; // gives you the the value for that specific case
+DeclineCode::EXPIRED_CARD->name; // gives you the the name for that specific case
+DeclineCode::EXPIRED_CARD->value; // gives you the the value for that specific case
 ```
 ```php
-DeclineCodes::EXPIRED_CARD->details(); // gives you the the array of details for that specific case
+DeclineCode::EXPIRED_CARD->details(); // gives you the the array of details for that specific case
 
 [
     "name" => "Expired Card",
@@ -102,7 +102,7 @@ DeclineCodes::EXPIRED_CARD->details(); // gives you the the array of details for
 ]
 ```
 ```php
-DeclineCodes::fromString('expired card')->details() // matches the case name and gives you the details
+DeclineCode::fromString('expired card')->details() // matches the case name and gives you the details
 ```
 
 Additionally you can create a function with the camel cased version of the case name that returns an array of details that will be used instead of the default one:
@@ -154,7 +154,7 @@ private function genericDecline(): array
 }
 ```
 ```php
-DeclineCodes::toSelect(); // gives you an array of value => name to use in an html select
+DeclineCode::toSelect(); // gives you an array of value => name to use in an html select
 
 [
     "default" => "Call issuer",
@@ -185,9 +185,19 @@ public static function toSelect(): array
 ```
 The `toJson()` method provides the json representation of the `toSelect()` method useful when you have to share data with a frontend in vue, react ecc... or an api:
 ```php
-DeclineCodes::toJson();
+DeclineCode::toJson();
 
 // "{"default":"Call issuer","card_not_supported":"Card Not Supported","do_not_honor":"Do Not Honor","expired_card":"Expired Card","generic_decline":"Generic Decline"}"
+```
+
+To better integrate the enum in a laravel ecosystem you can add it inside the `$casts` property of the model
+```php
+class Payment extends Model
+{
+    protected $casts = [
+        'decline_code' => DeclineCode::class
+    ];
+}
 ```
 
 ## Testing
