@@ -4,6 +4,7 @@ namespace {{ namespace }};
 
 use Frameck\AwesomeEnums\Traits\FromString;
 use Frameck\AwesomeEnums\Traits\HasDetails;
+use Frameck\AwesomeEnums\Traits\ToJson;
 use Frameck\AwesomeEnums\Traits\ToSelect;
 
 enum {{ class }}
@@ -11,4 +12,5 @@ enum {{ class }}
     use FromString;
     use HasDetails;
     use ToSelect;
+    use ToJson;
 }
