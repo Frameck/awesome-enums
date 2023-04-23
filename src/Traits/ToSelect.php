@@ -1,6 +1,6 @@
 <?php
 
-namespace Frameck\AwesomeEnums;
+namespace Frameck\AwesomeEnums\Traits;
 
 trait ToSelect
 {

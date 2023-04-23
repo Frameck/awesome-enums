@@ -2,9 +2,9 @@
 
 namespace {{ namespace }};
 
-use Frameck\AwesomeEnums\FromString;
-use Frameck\AwesomeEnums\HasDetails;
-use Frameck\AwesomeEnums\ToSelect;
+use Frameck\AwesomeEnums\Traits\FromString;
+use Frameck\AwesomeEnums\Traits\HasDetails;
+use Frameck\AwesomeEnums\Traits\ToSelect;
 
 enum {{ class }}
 {

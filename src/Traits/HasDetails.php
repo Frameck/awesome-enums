@@ -1,6 +1,6 @@
 <?php
 
-namespace Frameck\AwesomeEnums;
+namespace Frameck\AwesomeEnums\Traits;
 
 use Illuminate\Support\Collection;
 
