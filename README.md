@@ -50,6 +50,7 @@ enum DeclineCode: string
     case DO_NOT_HONOR = 'do_not_honor';
     case EXPIRED_CARD = 'expired_card';
     case GENERIC_DECLINE = 'generic_decline';
+}
 ```
 
 This is already enough to use this package:
