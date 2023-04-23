@@ -2,6 +2,12 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.0.1 - 2023-04-23
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.0.0...v1.0.1
+
+- updated docs
+
 ## v1.0.0 - 2023-04-23
 
 **Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v0.0.3...v1.0.0
