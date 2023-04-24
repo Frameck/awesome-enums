@@ -5,7 +5,7 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/frameck/awesome-enums/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/frameck/awesome-enums/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/frameck/awesome-enums.svg?style=flat-square)](https://packagist.org/packages/frameck/awesome-enums)
 
-This package provides a set of traits that extend the functionality of enums
+This package provides a `make:enum` command and a set of traits that extend the functionality of enums
 
 ## Installation
 
