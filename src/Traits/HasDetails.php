@@ -13,21 +13,28 @@ trait HasDetails
             ->camel()
             ->toString();
 
+        $name = str($this->name)->replace('_', ' ')->title()->toString();
+        $value = $this->value;
+
         if (!method_exists(static::class, $caseFunction)) {
             return [
-                'name' => str($this->name)->replace('_', ' ')->title()->toString(),
-                'value' => $this->value,
+                'name' => $name,
+                'value' => $value,
             ];
         }
 
         $details = $this->$caseFunction();
 
-        return array_merge(
-            $details,
-            [
-                'value' => $this->value,
-            ]
-        );
+        return collect($details)
+            ->when(
+                !isset($details['name']),
+                fn (Collection $details) => $details->put('name', $name),
+            )
+            ->when(
+                !isset($details['value']),
+                fn (Collection $details) => $details->put('value', $value),
+            )
+            ->toArray();
     }
 
     public static function all(): Collection
