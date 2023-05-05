@@ -2,6 +2,12 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.0.4 - 2023-05-05
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.0.3...v1.0.4
+
+[added fluent comparison methods](https://github.com/Frameck/awesome-enums/commit/732c826b4155ede395aecb9d5914399822982c17): `->is()` and `->isNot()`
+
 ## v1.0.3 - 2023-05-02
 
 **Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.0.2...v1.0.3
