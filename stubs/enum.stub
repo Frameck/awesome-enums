@@ -2,6 +2,7 @@
 
 namespace {{ namespace }};
 
+use Frameck\AwesomeEnums\Traits\Comparable;
 use Frameck\AwesomeEnums\Traits\FromString;
 use Frameck\AwesomeEnums\Traits\HasDetails;
 use Frameck\AwesomeEnums\Traits\ToJson;
@@ -9,6 +10,7 @@ use Frameck\AwesomeEnums\Traits\ToSelect;
 
 enum {{ class }}
 {
+    use Comparable;
     use FromString;
     use HasDetails;
     use ToSelect;

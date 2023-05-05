@@ -184,11 +184,18 @@ public static function toSelect(): array
         ->toArray();
 }
 ```
+
 The `toJson()` method provides the json representation of the `toSelect()` method useful when you have to share data with a frontend in vue, react ecc... or an api:
 ```php
 DeclineCode::toJson();
 
 // "{"default":"Call issuer","card_not_supported":"Card Not Supported","do_not_honor":"Do Not Honor","expired_card":"Expired Card","generic_decline":"Generic Decline"}"
+```
+
+The `is()` and `isNot()` methods provide a fluent way to check if an enum instance is equal to another:
+```php
+DeclineCode::CARD_NOT_SUPPORTED->is(DeclineCode::EXPIRED_CARD); // false
+DeclineCode::CARD_NOT_SUPPORTED->isNot(DeclineCode::EXPIRED_CARD); // true
 ```
 
 To better integrate the enum in a laravel ecosystem you can add it inside the `$casts` property of the model
