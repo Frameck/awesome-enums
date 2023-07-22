@@ -17,33 +17,34 @@ composer require frameck/awesome-enums
 
 ## Usage
 
+`--type` accepts `string` or `int` as values
 ```bash
-php artisan make:enum DeclineCode
+php artisan make:enum DeclineCode --type=string
 ```
 
 This command generates the following code:
 ```php
 namespace App\Enums;
 
-use Frameck\AwesomeEnums\Traits\FromString;
+use Frameck\AwesomeEnums\Traits\Comparable;
 use Frameck\AwesomeEnums\Traits\HasDetails;
-use Frameck\AwesomeEnums\Traits\ToSelect;
+use Frameck\AwesomeEnums\Traits\HasHelpers;
 
-enum DeclineCode
+enum DeclineCode: string
 {
-    use FromString;
+    use Comparable;
     use HasDetails;
-    use ToSelect;
+    use HasHelpers;
 }
 ```
 
-Then we specify that it's a backed enum of type string add the cases
+Then we add the cases
 ```php
 enum DeclineCode: string
 {
-    use FromString;
+    use Comparable;
     use HasDetails;
-    use ToSelect;
+    use HasHelpers;
 
     case DEFAULT = 'default';
     case CARD_NOT_SUPPORTED = 'card_not_supported';
@@ -54,9 +55,12 @@ enum DeclineCode: string
 ```
 
 This is already enough to use this package:
-```php
-DeclineCode::all(); // gives you a collection of all cases with their details
 
+The `all()` method provides a collection of all cases with their details
+```php
+DeclineCode::all();
+
+// result
 Illuminate\Support\Collection {
     all: [
         [
@@ -82,33 +86,77 @@ Illuminate\Support\Collection {
     ],
 }
 ```
-```php
-DeclineCode::EXPIRED_CARD; // gives you the the enum object for that specific case
 
+The `toArray()` method provides the array representation of the `all()` method
+```php
+DeclineCode::toArray();
+
+// result
+[
+    [
+        "name" => "Default",
+        "value" => "default",
+    ],
+    [
+        "name" => "Card Not Supported",
+        "value" => "card_not_supported",
+    ],
+    [
+        "name" => "Do Not Honor",
+        "value" => "do_not_honor",
+    ],
+    [
+        "name" => "Expired Card",
+        "value" => "expired_card",
+    ],
+    [
+        "name" => "Generic Decline",
+        "value" => "generic_decline",
+    ],
+]
+```
+
+The `fromName()` method matches the case name and returns you the enum instance
+```php
+DeclineCode::fromName('expired card')
+
+// result
 App\Enums\DeclineCode {
     name: "EXPIRED_CARD",
     value: "expired_card",
 }
 ```
-```php
-DeclineCode::EXPIRED_CARD->name; // gives you the the name for that specific case
-DeclineCode::EXPIRED_CARD->value; // gives you the the value for that specific case
-```
-```php
-DeclineCode::EXPIRED_CARD->details(); // gives you the the array of details for that specific case
 
+You can call the enum case as a static function
+```php
+DeclineCode::EXPIRED_CARD() // equivalent to DeclineCode::EXPIRED_CARD->value
+DeclineCode::EXPIRED_CARD('name') // equivalent to DeclineCode::EXPIRED_CARD->name
+DeclineCode::EXPIRED_CARD('value') // equivalent to DeclineCode::EXPIRED_CARD->value
+```
+
+or from an instance
+```php
+$declineCode = DeclineCode::EXPIRED_CARD;
+
+$declineCode() // equivalent to $declineCode->value
+$declineCode('name') // equivalent to $declineCode->name
+$declineCode('value') // equivalent to $declineCode->value
+```
+
+The `details()` method gives you the the array of details for that specific case
+```php
+DeclineCode::EXPIRED_CARD->details();
+
+// result
 [
     "name" => "Expired Card",
     "value" => "expired_card",
 ]
 ```
-```php
-DeclineCode::fromString('expired card')->details() // matches the case name and gives you the details
-```
 
-Additionally you can create a function with the camel cased version of the case name that returns an array of details that will be used instead of the default one:
+Additionally you can create a function with the camel cased version of the case name (+ Details) that returns an array of details that will be used instead of the default one:
 ```php
-private function default(): array
+private function defaultDetails(): array
 {
     return [
         'name' => 'Call Issuer',
@@ -118,7 +166,7 @@ private function default(): array
     ];
 }
 
-private function cardNotSupported(): array
+private function cardNotSupportedDetails(): array
 {
     return [
         'name' => 'Card Not Supported',
@@ -127,7 +175,7 @@ private function cardNotSupported(): array
     ];
 }
 
-private function doNotHonor(): array
+private function doNotHonorDetails(): array
 {
     return [
         'name' => 'Do Not Honor',
@@ -136,7 +184,7 @@ private function doNotHonor(): array
     ];
 }
 
-private function expiredCard(): array
+private function expiredCardDetails(): array
 {
     return [
         'name' => 'Expired Card',
@@ -145,7 +193,7 @@ private function expiredCard(): array
     ];
 }
 
-private function genericDecline(): array
+private function genericDeclineDetails(): array
 {
     return [
         'name' => 'Generic Decline',
@@ -154,8 +202,17 @@ private function genericDecline(): array
     ];
 }
 ```
+You can also pass an optional key to retrieve only that value
 ```php
-DeclineCode::toSelect(); // gives you an array of value => name to use in an html select
+DeclineCode::EXPIRED_CARD->details('description');
+
+// result
+// The card was declined for an unknown reason.
+```
+
+The `toSelect()` method provides an array of key value pair useful in html selects
+```php
+DeclineCode::toSelect();
 
 [
     "default" => "Call issuer",
