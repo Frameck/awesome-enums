@@ -2,6 +2,18 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.1 - 2023-07-22
+
+### What's Changed
+
+- new `--type` option in `make:enum` command
+- ability to call an enum class or case as a function and get the corresponding value
+- new `toArray `, `names` and `values` methods
+- improved `details` method
+- improved docs
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.0.4...v1.1
+
 ## v1.0.4 - 2023-05-05
 
 **Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.0.3...v1.0.4
