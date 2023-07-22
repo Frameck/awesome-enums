@@ -2,7 +2,7 @@
 
 namespace Frameck\AwesomeEnums;
 
-use Frameck\AwesomeEnums\Commands\AwesomeEnumsCommand;
+use Frameck\AwesomeEnums\Commands\MakeEnumCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,6 +17,6 @@ class AwesomeEnumsServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('awesome-enums')
-            ->hasCommand(AwesomeEnumsCommand::class);
+            ->hasCommand(MakeEnumCommand::class);
     }
 }
