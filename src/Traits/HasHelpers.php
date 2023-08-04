@@ -67,13 +67,13 @@ trait HasHelpers
 
     public function __call($name, $args): int|string
     {
-        return $this->fromString($name)
+        return $this->fromName($name)
             ->details(Arr::first($args) ?? 'value');
     }
 
     public static function __callStatic($name, $args): int|string
     {
-        return self::fromString($name)
+        return self::fromName($name)
             ->details(Arr::first($args) ?? 'value');
     }
 }
