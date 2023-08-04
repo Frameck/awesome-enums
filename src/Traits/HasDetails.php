@@ -17,14 +17,16 @@ trait HasDetails
         $name = str($this->name)->replace('_', ' ')->title()->toString();
         $value = $this->value;
 
-        if (!method_exists(static::class, $caseFunction)) {
-            return [
-                'name' => $name,
-                'value' => $value,
-            ];
+        $details = [
+            'name' => $name,
+            'value' => $value,
+        ];
+
+        if (method_exists(static::class, $caseFunction)) {
+            $details = $this->$caseFunction();
         }
 
-        $details = collect($this->$caseFunction())
+        $details = collect($details)
             ->when(
                 !isset($details['name']),
                 fn (Collection $details) => $details->put('name', $name),
