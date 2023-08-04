@@ -2,6 +2,12 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.2.2 - 2023-08-04
+
+- fix calling wrong method
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.2.1...v1.2.2
+
 ## v1.2.1 - 2023-08-04
 
 - fix `details()` method
