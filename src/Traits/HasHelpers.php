@@ -42,6 +42,22 @@ trait HasHelpers
             ));
     }
 
+    public function in(array $cases): bool
+    {
+        foreach ($cases as $case) {
+            if ($this === $case) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function notIn(array $cases): bool
+    {
+        return !$this->in($cases);
+    }
+
     public function __invoke($value = null): int|string
     {
         return $this instanceof BackedEnum

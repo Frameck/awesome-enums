@@ -255,6 +255,12 @@ DeclineCode::CARD_NOT_SUPPORTED->is(DeclineCode::EXPIRED_CARD); // false
 DeclineCode::CARD_NOT_SUPPORTED->isNot(DeclineCode::EXPIRED_CARD); // true
 ```
 
+The `in()` and `notIn()` methods provide a fluent way to check if an enum instance is present in an array of enums:
+```php
+DeclineCode::CARD_NOT_SUPPORTED->in([DeclineCode::EXPIRED_CARD, DeclineCode::GENERIC_DECLINE]); // false
+DeclineCode::CARD_NOT_SUPPORTED->notIn([DeclineCode::EXPIRED_CARD, DeclineCode::GENERIC_DECLINE]); // true
+```
+
 To better integrate the enum in a laravel ecosystem you can add it inside the `$casts` property of the model
 ```php
 class Payment extends Model
