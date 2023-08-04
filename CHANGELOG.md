@@ -2,6 +2,12 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.2.1 - 2023-08-04
+
+- fix `details()` method
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.2...v1.2.1
+
 ## v1.2 - 2023-08-04
 
 - new `in()` and `notIn()` methods to fluently check if an enum instance is present in an array of enums
