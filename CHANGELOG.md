@@ -2,6 +2,13 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.2.3 - 2023-08-08
+
+- [improved in() function](https://github.com/Frameck/awesome-enums/commit/1d400c4ea86b3b0274dce29321f3a07dee1a2cc5)
+- [improved all() and details() methods](https://github.com/Frameck/awesome-enums/commit/d894e86e468d6c384754c3b9d9d945dca19684ab)
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.2.2...v1.2.3
+
 ## v1.2.2 - 2023-08-04
 
 - fix calling wrong method
