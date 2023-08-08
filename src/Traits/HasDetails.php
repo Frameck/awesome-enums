@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 
 trait HasDetails
 {
-    public function details(?string $key = null): mixed
+    public function getDetails(?string $key = null): mixed
     {
         $caseFunction = str($this->name)
             ->lower()
@@ -47,22 +47,27 @@ trait HasDetails
 
     public static function all(): Collection
     {
-        return collect(self::class::cases())
-            ->map(fn (self $code) => $code->details());
+        return collect(self::cases());
+    }
+
+    public static function details(): Collection
+    {
+        return self::all()
+            ->map(fn (self $case) => $case->getDetails());
     }
 
     public static function toArray(): array
     {
-        return self::all()->toArray();
+        return self::details()->toArray();
     }
 
     public static function names(): Collection
     {
-        return self::all()->pluck('name');
+        return self::details()->pluck('name');
     }
 
     public static function values(): Collection
     {
-        return self::all()->pluck('value');
+        return self::details()->pluck('value');
     }
 }

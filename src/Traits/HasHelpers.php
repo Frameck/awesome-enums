@@ -11,7 +11,7 @@ trait HasHelpers
     {
         return collect(self::cases())
             ->mapWithKeys(function (self $case) {
-                $caseDetails = $case->details();
+                $caseDetails = $case->getDetails();
                 $selectLabel = $caseDetails['select']
                     ?? $caseDetails['label']
                     ?? $caseDetails['name'];
@@ -61,19 +61,19 @@ trait HasHelpers
     public function __invoke($value = null): int|string
     {
         return $this instanceof BackedEnum
-            ? $this->details($value ?? 'value')
+            ? $this->getDetails($value ?? 'value')
             : $this->name;
     }
 
     public function __call($name, $args): int|string
     {
         return $this->fromName($name)
-            ->details(Arr::first($args) ?? 'value');
+            ->getDetails(Arr::first($args) ?? 'value');
     }
 
     public static function __callStatic($name, $args): int|string
     {
         return self::fromName($name)
-            ->details(Arr::first($args) ?? 'value');
+            ->getDetails(Arr::first($args) ?? 'value');
     }
 }

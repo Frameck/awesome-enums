@@ -56,9 +56,40 @@ enum DeclineCode: string
 
 This is already enough to use this package:
 
-The `all()` method provides a collection of all cases with their details
+The `all()` method provides a collection of all cases
 ```php
 DeclineCode::all();
+
+// result
+Illuminate\Support\Collection {
+    all: [
+        App\Enums\DeclineCode {
+            +name: "DEFAULT",
+            +value: "default",
+        },
+        App\Enums\DeclineCode {
+            +name: "CARD_NOT_SUPPORTED",
+            +value: "card_not_supported",
+        },
+        App\Enums\DeclineCode {
+            +name: "DO_NOT_HONOR",
+            +value: "do_not_honor",
+        },
+        App\Enums\DeclineCode {
+            +name: "EXPIRED_CARD",
+            +value: "expired_card",
+        },
+        App\Enums\DeclineCode {
+            +name: "GENERIC_DECLINE",
+            +value: "generic_decline",
+        },
+    ],
+}
+```
+
+The `details()` method provides a collection of all cases with their details
+```php
+DeclineCode::details();
 
 // result
 Illuminate\Support\Collection {
@@ -87,7 +118,7 @@ Illuminate\Support\Collection {
 }
 ```
 
-The `toArray()` method provides the array representation of the `all()` method
+The `toArray()` method provides the array representation of the `details()` method
 ```php
 DeclineCode::toArray();
 
@@ -145,7 +176,7 @@ $declineCode('value') // equivalent to $declineCode->value
 
 The `details()` method gives you the the array of details for that specific case
 ```php
-DeclineCode::EXPIRED_CARD->details();
+DeclineCode::EXPIRED_CARD->getDetails();
 
 // result
 [
@@ -204,7 +235,7 @@ private function genericDeclineDetails(): array
 ```
 You can also pass an optional key to retrieve only that value
 ```php
-DeclineCode::EXPIRED_CARD->details('description');
+DeclineCode::EXPIRED_CARD->getDetails('description');
 
 // result
 // The card was declined for an unknown reason.
@@ -229,7 +260,7 @@ public static function toSelect(): array
 {
     return collect(self::cases())
         ->mapWithKeys(function (self $case) {
-            $caseDetails = $case->details();
+            $caseDetails = $case->getDetails();
             $selectLabel = $caseDetails['select']
                 ?? $caseDetails['label']
                 ?? $caseDetails['name'];
