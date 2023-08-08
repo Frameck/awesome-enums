@@ -44,13 +44,7 @@ trait HasHelpers
 
     public function in(array $cases): bool
     {
-        foreach ($cases as $case) {
-            if ($this === $case) {
-                return true;
-            }
-        }
-
-        return false;
+        return in_array($this, $cases);
     }
 
     public function notIn(array $cases): bool
