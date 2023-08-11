@@ -2,6 +2,12 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.2.4 - 2023-08-11
+
+[use static types instead of self when possible](https://github.com/Frameck/awesome-enums/commit/5d483a648aeadb2f0b632e5ded61ff4662db7256)
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.2.3...v1.2.4
+
 ## v1.2.3 - 2023-08-08
 
 - [improved in() function](https://github.com/Frameck/awesome-enums/commit/1d400c4ea86b3b0274dce29321f3a07dee1a2cc5)
