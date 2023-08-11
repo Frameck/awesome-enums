@@ -9,7 +9,7 @@ trait HasHelpers
 {
     public static function toSelect(): array
     {
-        return collect(self::cases())
+        return collect(static::cases())
             ->mapWithKeys(function (self $case) {
                 $caseDetails = $case->getDetails();
                 $selectLabel = $caseDetails['select']
@@ -29,14 +29,14 @@ trait HasHelpers
             ->toJson();
     }
 
-    public static function fromName(string $name): ?self
+    public static function fromName(string $name): ?static
     {
         $name = str($name)
             ->replace(' ', '_')
             ->upper()
             ->toString();
 
-        return collect(self::cases())
+        return collect(static::cases())
             ->first(fn (self $case) => (
                 $case->name === $name
             ));

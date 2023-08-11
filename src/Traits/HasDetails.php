@@ -47,27 +47,27 @@ trait HasDetails
 
     public static function all(): Collection
     {
-        return collect(self::cases());
+        return collect(static::cases());
     }
 
     public static function details(): Collection
     {
-        return self::all()
+        return static::all()
             ->map(fn (self $case) => $case->getDetails());
     }
 
     public static function toArray(): array
     {
-        return self::details()->toArray();
+        return static::details()->toArray();
     }
 
     public static function names(): Collection
     {
-        return self::details()->pluck('name');
+        return static::details()->pluck('name');
     }
 
     public static function values(): Collection
     {
-        return self::details()->pluck('value');
+        return static::details()->pluck('value');
     }
 }
