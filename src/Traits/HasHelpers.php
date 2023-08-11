@@ -32,7 +32,7 @@ trait HasHelpers
     public static function fromName(string $name): ?static
     {
         $name = str($name)
-            ->replace(' ', '_')
+            ->snake()
             ->upper()
             ->toString();
 
