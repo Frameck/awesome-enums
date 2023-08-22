@@ -11,6 +11,8 @@ class MakeEnumCommand extends GeneratorCommand
 
     public $description = 'Make an enum class';
 
+    protected $type = 'enum';
+
     protected function getStub(): string
     {
         return base_path('vendor/frameck/awesome-enums/stubs/enum.stub');
