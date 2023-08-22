@@ -2,6 +2,13 @@
 
 All notable changes to `awesome-enums` will be documented in this file.
 
+## v1.2.6 - 2023-08-22
+
+- [added missing type in make:enum command](https://github.com/Frameck/awesome-enums/commit/e587ffc53e16a428f97b06843105433a133a66e6)
+- [added select for --type option using laravel/prompts](https://github.com/Frameck/awesome-enums/commit/16bcb9bf059655d8c10c82406428c4cc5e7f1328)
+
+**Full Changelog**: https://github.com/Frameck/awesome-enums/compare/v1.2.5...v1.2.6
+
 ## v1.2.5 - 2023-08-11
 
 - [use snake case in fromName method](https://github.com/Frameck/awesome-enums/commit/c41bc0de1d8aad7c5ffdffe7743bd40e038aa8cb)
