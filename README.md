@@ -17,10 +17,15 @@ composer require frameck/awesome-enums
 
 ## Usage
 
-`--type` accepts `string` or `int` as values
 ```bash
-php artisan make:enum DeclineCode --type=string
+php artisan make:enum DeclineCode
 ```
+
+Possible options:
+- `--type`: creates a backed enum, possible values are: `int` or `string`
+- `--force`: overwrites if the enum already exists
+
+If no `--type` option is passed the command will prompt you to make a choice
 
 This command generates the following code:
 ```php

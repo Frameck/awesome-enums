@@ -5,6 +5,8 @@ namespace Frameck\AwesomeEnums\Commands;
 use Illuminate\Console\GeneratorCommand;
 use Symfony\Component\Console\Input\InputOption;
 
+use function Laravel\Prompts\select;
+
 class MakeEnumCommand extends GeneratorCommand
 {
     public $signature = 'make:enum {name} {--type=} {--force}';
@@ -25,9 +27,19 @@ class MakeEnumCommand extends GeneratorCommand
 
     protected function buildClass($name)
     {
+        $type = $this->option('type')
+            ?? select(
+                label: 'Should be a backed enum?',
+                options: [
+                    'no' => 'No',
+                    'int' => 'Int',
+                    'string' => 'String',
+                ]
+            );
+
         return str_replace(
             ['{{ type }}'],
-            match ($this->option('type')) {
+            match ($type) {
                 'string' => ': string',
                 'int', 'integer' => ': int',
                 default => ''
